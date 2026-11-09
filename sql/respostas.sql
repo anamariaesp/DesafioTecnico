@@ -28,3 +28,7 @@ join PEDIDOS p on (p.ID_CLIENTE = c.ID)
 join ITENS_PEDIDO i on (i.ID_PEDIDO = p.ID)
 where p.SITUACAO = 'Faturado'
 group by 1 order by 1
+
+--d) Eu criaria indíces nas chaves primárias e estrangeiras pois são frequentemente usadas em JOINs e também nas colunas que mais são usadas em WHEREs
+--   PEDIDOS: ID, ID_CLIENTE, DATA_EMISSAO
+--   ITENS_PEDIDO: ID, ID_PEDIDO, SKU
