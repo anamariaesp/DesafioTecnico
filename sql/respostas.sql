@@ -9,6 +9,16 @@ where p.DATA_EMISSAO between '01.01.2026' and '31.12.2026' and p.SITUACAO = 'Fat
 group by 1 order by 1
 
 
+--b)
+select c.NOME, count(p.ID) QUANTIDADE, avg(i.QTD*i.VALOR_UNIT) TICKET_MEDIO
+from CLIENTES c
+join PEDIDOS p on (p.ID_CLIENTE = c.ID)
+join ITENS_PEDIDO i on (i.ID_PEDIDO = p.ID)
+where p.SITUACAO = 'Faturado' and p.DATA_EMISSAO between '01.01.2026' and '31.12.2026' and (i.QTD*i.VALOR_UNIT) > 1500
+group by c.NOME
+having count(p.ID) > 3
+
+
 --c)
 select c.NOME, max(p.ID) PEDIDO,
 (select p2.DATA_EMISSAO DATA_PEDIDO from PEDIDOS p2 where p2.ID = max(p.ID)),
