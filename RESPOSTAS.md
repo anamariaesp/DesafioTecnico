@@ -12,3 +12,14 @@ Foi um projeto pessoal que fiz sozinha, então toda a parte de backend e fronten
 
 Um ERP deveria ter cadastro de funcionários, clientes e produtos, uma aba para gerenciamento de vendas/contratos, uma aba para impressão dos documentos (NF, boletos e recibos) e uma aba de dashboards e relatórios (com foco em relatórios financeiros).
 Além das funcionalidades um sistema ERP deveria ter uma interface simples de aprender e entender, em que as tarefas mais comuns possam ser completas com o mínimo de abas e botões possível, sempre focando na user experience para se tornar agradável de utilizar.
+
+
+## PARTE 4
+**a) Liste os problemas que você encontrou em ordem de gravidade (o que causaria mais prejuízo para a empresa primeiro). Para cada um, diga em uma ou duas frases qual seria o efeito real em produção.**
+
+Localizei problemas de segurança na utilização as querys sem tratamento, isso possibilita que seja feita uma SQL injection, onde hackers poderiam, por exemplo, deletar alguma tabela do banco de dados;
+A função só ignora e segue operando quando não tem estoque o suficiente sem trazer nenhum erro para o usuário, isso pode causar problemas de falta de itens dos pedidos no estoque e também inconsistência no pedido, onde só alguns itens são realmente processados;
+O tratamento de erro também está incorreto, deixa toda a função rodar sem apresentar erros onde deveria e caso mostre o erro, não vai deixar claro ao usuário o que ocorreu com a devida descrição e cancelar a operação atual.
+
+
+**b) Reescreva a função (na linguagem que preferir, pode ser pseudocódigo) corrigindo os problemas que você considera bloqueantes para o merge.**
