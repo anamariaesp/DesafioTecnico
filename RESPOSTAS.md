@@ -25,3 +25,31 @@ O tratamento de erro também está incorreto, deixa toda a função rodar sem ap
 
 
 **b) Reescreva a função (na linguagem que preferir, pode ser pseudocódigo) corrigindo os problemas que você considera bloqueantes para o merge.**
+
+função faturarPedido(pedidoId){
+    tentar{
+        verificar se pedidoId é um id válido
+        buscar pedido pelo id no banco de dados
+        se pedido não existir ou não puder ser faturado{
+            retornar erro
+        }
+        buscar itens do pedido
+        total = 0
+        para cada item do pedido{
+            buscar estoque usando o SKU
+            se estoque for maior do que a quantidade do item{
+                estoque = estoque - quantidade
+            } senão {
+                rollback todas as transações anteriores
+                retornar erro
+            }
+            total = total + (quantidade * valor)
+        }
+        atualizar o total do pedido e a situação para 'Faturado'
+        commitar as transações no banco
+        retornar
+    } se der erro {
+    rollback nas transações
+    retornar mensagem de erro
+}
+                          
