@@ -7,6 +7,8 @@ Foi um projeto pessoal que fiz sozinha, então toda a parte de backend e fronten
 
 **1.2 Conte um bug difícil que você investigou. Como você chegou à causa (logs, debugger, hipóteses descartadas)? Como confirmou que estava resolvido?**
 
+O bug mais difícil que eu resolvi foi na emissão de uma NFCom, estava ocorrendo problema de data na emissão da nota, foi verificado log do emissor de nota, log do próprio aplicativo porém parecia tudo correto, mas na análise do log do Windos verifiquei que a data da máquina estava em padrão americano MM/DD/AAAA
+Sugeri para o setor de desenvolvimento a criação de um novo parâmetro no emissor para aceitar esse modelo de data
 
 **1.3 Na sua opinião, o que um sistema de gestão de empresas (ERP) deveria ter? Pense em funcionalidades, em quem usa o sistema no dia a dia e no que separa um sistema bom de um sistema que as pessoas só toleram.**
 
