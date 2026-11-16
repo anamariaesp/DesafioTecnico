@@ -41,9 +41,6 @@ public class PedidosService {
     @Transactional
     public PedidosResponse atualizar(Long id, PedidosRequest dto){
         Pedidos pedido = buscarEntity(id);
-        if(repository.existsByNumero(dto.numero())) {
-            throw new RegraDeNegocioException("Já existe pedido com o número "+ dto.numero());
-        }
         pedido.setNumero(dto.numero());
         pedido.setItens(dto.itens());
         pedido.setSituacao(dto.situacao());
