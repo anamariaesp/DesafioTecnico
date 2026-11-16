@@ -3,7 +3,7 @@ package br.com.projeto.conferenciaPedidos.entity;
 import br.com.projeto.conferenciaPedidos.enums.SituacaoPedido;
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table
@@ -14,12 +14,12 @@ public class Pedidos {
     @Column(nullable = false, unique = true)
     private int numero;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ItensPedido> itens;
+    private List<ItensPedido> itens;
     private SituacaoPedido situacao;
 
     public Pedidos() {}
 
-    public Pedidos(int numero, Set<ItensPedido> itens, SituacaoPedido situacao) {
+    public Pedidos(int numero, List<ItensPedido> itens, SituacaoPedido situacao) {
         this.numero = numero;
         this.itens = itens;
         this.situacao = situacao;
@@ -37,11 +37,11 @@ public class Pedidos {
         this.numero = numero;
     }
 
-    public Set<ItensPedido> getItens() {
+    public List<ItensPedido> getItens() {
         return itens;
     }
 
-    public void setItens(Set<ItensPedido> itens) {
+    public void setItens(List<ItensPedido> itens) {
         this.itens = itens;
     }
 

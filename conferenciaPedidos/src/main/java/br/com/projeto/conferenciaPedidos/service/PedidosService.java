@@ -4,6 +4,7 @@ import br.com.projeto.conferenciaPedidos.dto.PedidosRequest;
 import br.com.projeto.conferenciaPedidos.dto.PedidosResponse;
 import br.com.projeto.conferenciaPedidos.entity.Pedidos;
 import br.com.projeto.conferenciaPedidos.exception.RecursoNaoEncontradoException;
+import br.com.projeto.conferenciaPedidos.exception.RegraDeNegocioException;
 import br.com.projeto.conferenciaPedidos.repository.PedidosRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +20,10 @@ public class PedidosService {
     }
 
     @Transactional
-    public PedidosResponse criar(PedidosRequest dto) { 
+    public PedidosResponse criar(PedidosRequest dto) {
+        if(repository.existsByNumero(dto.numero())) {
+            throw new RegraDeNegocioException("Já existe pedido com o número "+ dto.numero());
+        }
         Pedidos salvo = repository.save(new Pedidos(dto.numero(), dto.itens(), dto.situacao()));
         return PedidosResponse.de(salvo);
     }
@@ -37,6 +41,9 @@ public class PedidosService {
     @Transactional
     public PedidosResponse atualizar(Long id, PedidosRequest dto){
         Pedidos pedido = buscarEntity(id);
+        if(repository.existsByNumero(dto.numero())) {
+            throw new RegraDeNegocioException("Já existe pedido com o número "+ dto.numero());
+        }
         pedido.setNumero(dto.numero());
         pedido.setItens(dto.itens());
         pedido.setSituacao(dto.situacao());

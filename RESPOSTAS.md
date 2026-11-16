@@ -84,6 +84,7 @@ Meus projetos anteriores do Github
 Stack OverFlow
 Documentação oficial do Firebird
 OneCompiler (Firebird tutorials)
-
+Documentação oficial do Spring Framework
+Medium (validações no Spring Boot)
 
 **5.5 Declaro que NÃO usei ferramentas de IA neste desafio: (X) Concordo Nome:** Ana Maria Espindula 
