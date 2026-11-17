@@ -17,8 +17,7 @@ public class Leituras {
     public Leituras() {
     }
 
-    public Leituras(long id, Conferencias conferencia, String sku) {
-        this.id = id;
+    public Leituras(Conferencias conferencia, String sku) {
         this.conferencia = conferencia;
         this.sku = sku;
     }

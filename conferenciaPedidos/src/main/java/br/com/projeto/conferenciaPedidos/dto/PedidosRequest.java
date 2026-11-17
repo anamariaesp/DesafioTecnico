@@ -13,7 +13,7 @@ public record PedidosRequest(
         @NotNull(message = "Número do pedido é obrigatório")
         int numero,
         @Valid
-        List<@NotBlank(message = "Pedido precisa ter pelo menos um item") ItensPedido> itens,
+        List<@NotNull(message = "Pedido precisa ter pelo menos um item") ItensPedido> itens,
         SituacaoPedido situacao
 ) {
 }
