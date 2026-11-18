@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Leituras")
+@RequestMapping("/leituras")
 public class LeiturasController {
     private final LeiturasService service;
 
@@ -23,7 +23,7 @@ public class LeiturasController {
     public ResponseEntity<LeiturasResponse> criar(
             @Valid @RequestBody LeiturasRequest dto) {
         LeiturasResponse criado = service.criar(dto);
-        return ResponseEntity.created(URI.create("/Leituras/" + criado.id())).body(criado);
+        return ResponseEntity.created(URI.create("/leituras/" + criado.id())).body(criado);
     }
 
     @GetMapping

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class LeiturasService {
@@ -20,7 +21,7 @@ public class LeiturasService {
 
     @Transactional
     public LeiturasResponse criar(LeiturasRequest dto) {
-        Leituras salvo = repository.save(new Leituras(dto.conferencia(), dto.sku()));
+        Leituras salvo = repository.save(new Leituras(dto.conferencia(), dto.sku().trim().toUpperCase(Locale.ROOT)));
         return LeiturasResponse.de(salvo);
     }
 
@@ -37,8 +38,8 @@ public class LeiturasService {
     @Transactional
     public LeiturasResponse atualizar(Long id, LeiturasRequest dto){
         Leituras itens = buscarEntity(id);
-        itens.setSku(dto.sku());
         itens.setConferencia(dto.conferencia());
+        itens.setSku(dto.sku().trim().toUpperCase(Locale.ROOT));
         return LeiturasResponse.de(itens);
     }
 
