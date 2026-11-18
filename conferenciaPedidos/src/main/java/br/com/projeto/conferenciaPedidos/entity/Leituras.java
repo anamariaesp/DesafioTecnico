@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Leituras {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "id_conferencia", nullable = false)
     private Conferencias conferencia;
@@ -40,5 +40,17 @@ public class Leituras {
 
     public void setSku(String sku) {
         this.sku = sku;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Leituras )) return false;
+        return id != null && id.equals(((Leituras) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

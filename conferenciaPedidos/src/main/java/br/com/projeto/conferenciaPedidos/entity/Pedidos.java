@@ -10,7 +10,7 @@ import java.util.List;
 public class Pedidos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false, unique = true)
     private int numero;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -22,6 +22,11 @@ public class Pedidos {
     public Pedidos(int numero, List<ItensPedido> itens, SituacaoPedido situacao) {
         this.numero = numero;
         this.itens = itens;
+        this.situacao = situacao;
+    }
+
+    public Pedidos(int numero, SituacaoPedido situacao) {
+        this.numero = numero;
         this.situacao = situacao;
     }
 
@@ -51,5 +56,15 @@ public class Pedidos {
 
     public void setSituacao(SituacaoPedido situacao) {
         this.situacao = situacao;
+    }
+
+    public void addItem(ItensPedido item){
+        itens.add(item);
+        item.setPedido(this);
+    }
+
+    public void removeItem(ItensPedido item){
+        itens.remove(item);
+        item.setPedido(null);
     }
 }

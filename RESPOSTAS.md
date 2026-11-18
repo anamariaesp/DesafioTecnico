@@ -39,7 +39,7 @@ função faturarPedido(pedidoId){
         buscar itens do pedido
         total = 0
         para cada item do pedido{
-            buscar estoque usando o SKU
+            buscar estoque usando o sku
             se estoque for maior do que a quantidade do item{
                 estoque = estoque - quantidade
             } senão {
@@ -61,21 +61,22 @@ função faturarPedido(pedidoId){
 **5.1 Quanto tempo de trabalho, aproximadamente, você levou em cada parte?**
 
 PT1: 30 minutos
-PT2: 3 horas
+PT2: 6 horas
 PT3: 2 horas
 PT4: 40 minutos
-PT5: 20 minutos
+PT5: 40 minutos
 
 
 **5.2 O que você deixou de fora ou faria diferente com mais tempo?**
 
-O principal foi finalizar a PARTE 2 do desafio, infelizmente não tive tempo para conseguir terminar tudo
-Também deixei de fora a segunda parte da pergunta D da PARTE 3 referente aos índices, não tenho tanto conhecimento ou experiência nessa parte do FB
+O principal foi finalizar a PARTE 2 do desafio, optei por deixar de fora a parte de Conferências, Fechamento de Pedidos e Testes, e também a segunda parte da pergunta D da PARTE 3 referente aos índices.
+Ambos por falta de experiência e conhecimento na área, priorizei fazer o que eu sabia de momento! Com mais tempo, pesquisaria afundo e finalizaria essas duas questões
 
 
 **5.3 Qual foi a parte mais difícil? Onde você travou?**
 
-A mais difícil foi a PARTE 2, tanto por conta do tempo e por conta das regras/requisitos
+A mais difícil foi definitivamente a PARTE 2, haviam alguns conceitos que eu não conhecia, então tive que ir pesquisando e testando o que funcionava
+E eu travei na questão das Conferências, Fechamento de Pedidos e Testes, algumas rotas infelizmente não consegui finalizar 
 
 **5.4 Que sites/materiais você consultou?**
 
@@ -86,5 +87,6 @@ Documentação oficial do Firebird
 OneCompiler (Firebird tutorials)
 Documentação oficial do Spring Framework
 Medium (validações no Spring Boot)
+Vlad Mihalcea (mapeamento de relações @OneToMany)
 
 **5.5 Declaro que NÃO usei ferramentas de IA neste desafio: (X) Concordo Nome:** Ana Maria Espindula 

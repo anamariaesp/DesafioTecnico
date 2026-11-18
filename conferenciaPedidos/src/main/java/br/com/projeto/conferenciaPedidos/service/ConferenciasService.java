@@ -3,6 +3,8 @@ package br.com.projeto.conferenciaPedidos.service;
 import br.com.projeto.conferenciaPedidos.dto.ConferenciasRequest;
 import br.com.projeto.conferenciaPedidos.dto.ConferenciasResponse;
 import br.com.projeto.conferenciaPedidos.entity.Conferencias;
+import br.com.projeto.conferenciaPedidos.entity.Leituras;
+import br.com.projeto.conferenciaPedidos.entity.Pedidos;
 import br.com.projeto.conferenciaPedidos.exception.RecursoNaoEncontradoException;
 import br.com.projeto.conferenciaPedidos.repository.ConferenciasRepository;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,11 @@ public class ConferenciasService {
 
     @Transactional
     public ConferenciasResponse criar(ConferenciasRequest dto) {
-        Conferencias salvo = repository.save(new Conferencias(dto.pedido(), dto.itens(),dto.status()));
+        Conferencias c = new Conferencias(dto.pedido(),dto.status());
+        for (Leituras l : dto.itens()) {
+            c.addLeitura(l);
+        }
+        Conferencias salvo = repository.save(c);
         return ConferenciasResponse.de(salvo);
     }
 

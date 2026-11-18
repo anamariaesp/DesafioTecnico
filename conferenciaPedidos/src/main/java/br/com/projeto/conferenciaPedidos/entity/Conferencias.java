@@ -10,7 +10,7 @@ import java.util.List;
 public class Conferencias {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "id_pedido", nullable = false)
     private Pedidos pedido;
@@ -24,6 +24,11 @@ public class Conferencias {
     public Conferencias(Pedidos pedido, List<Leituras> itens, StatusConferencia status) {
         this.pedido = pedido;
         this.itens = itens;
+        this.status = status;
+    }
+
+    public Conferencias(Pedidos pedido, StatusConferencia status) {
+        this.pedido = pedido;
         this.status = status;
     }
 
@@ -53,5 +58,15 @@ public class Conferencias {
 
     public void setStatus(StatusConferencia status) {
         this.status = status;
+    }
+
+    public void addLeitura(Leituras leitura){
+        itens.add(leitura);
+        leitura.setConferencia(this);
+    }
+
+    public void removeLeitura(Leituras leitura){
+        itens.remove(leitura);
+        leitura.setConferencia(null);
     }
 }

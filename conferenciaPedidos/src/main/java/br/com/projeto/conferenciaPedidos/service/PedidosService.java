@@ -2,7 +2,9 @@ package br.com.projeto.conferenciaPedidos.service;
 
 import br.com.projeto.conferenciaPedidos.dto.PedidosRequest;
 import br.com.projeto.conferenciaPedidos.dto.PedidosResponse;
+import br.com.projeto.conferenciaPedidos.entity.ItensPedido;
 import br.com.projeto.conferenciaPedidos.entity.Pedidos;
+import br.com.projeto.conferenciaPedidos.enums.SituacaoPedido;
 import br.com.projeto.conferenciaPedidos.exception.RecursoNaoEncontradoException;
 import br.com.projeto.conferenciaPedidos.exception.RegraDeNegocioException;
 import br.com.projeto.conferenciaPedidos.repository.PedidosRepository;
@@ -24,7 +26,11 @@ public class PedidosService {
         if(repository.existsByNumero(dto.numero())) {
             throw new RegraDeNegocioException("Já existe pedido com o número "+ dto.numero());
         }
-        Pedidos salvo = repository.save(new Pedidos(dto.numero(), dto.itens(), dto.situacao()));
+        Pedidos p = new Pedidos(dto.numero(), SituacaoPedido.ABERTO);
+        for (ItensPedido i : dto.itens()) {
+            p.addItem(i);
+        }
+        Pedidos salvo = repository.save(p);
         return PedidosResponse.de(salvo);
     }
 

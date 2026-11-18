@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ItensPedidoService {
@@ -20,7 +21,7 @@ public class ItensPedidoService {
 
     @Transactional
     public ItensPedidoResponse criar(ItensPedidoRequest dto) {
-        ItensPedido salvo = repository.save(new ItensPedido(dto.pedido(), dto.SKU(), dto.quantidade()));
+        ItensPedido salvo = repository.save(new ItensPedido(dto.pedido(), dto.SKU().trim().toUpperCase(Locale.ROOT), dto.quantidade()));
         return ItensPedidoResponse.de(salvo);
     }
 
@@ -38,7 +39,7 @@ public class ItensPedidoService {
     public ItensPedidoResponse atualizar(Long id, ItensPedidoRequest dto){
         ItensPedido itens = buscarEntity(id);
         itens.setPedido(dto.pedido());
-        itens.setSKU(dto.SKU());
+        itens.setSku(dto.SKU().trim().toUpperCase(Locale.ROOT));
         itens.setQuantidade(dto.quantidade());
         return ItensPedidoResponse.de(itens);
     }

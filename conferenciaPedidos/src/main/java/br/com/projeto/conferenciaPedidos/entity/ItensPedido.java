@@ -1,6 +1,5 @@
 package br.com.projeto.conferenciaPedidos.entity;
 
-import br.com.projeto.conferenciaPedidos.enums.SituacaoPedido;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,21 +7,21 @@ import jakarta.persistence.*;
 public class ItensPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @ManyToOne
+    private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pedido", nullable = false)
     private Pedidos pedido;
     @Column(nullable = false)
-    private String SKU;
+    private String sku;
     @Column(nullable = false)
     private int quantidade;
 
     public ItensPedido() {
     }
 
-    public ItensPedido(Pedidos pedido, String SKU, int quantidade) {
+    public ItensPedido(Pedidos pedido, String sku, int quantidade) {
         this.pedido = pedido;
-        this.SKU = SKU;
+        this.sku = sku;
         this.quantidade = quantidade;
     }
 
@@ -38,12 +37,12 @@ public class ItensPedido {
         this.pedido = pedido;
     }
 
-    public String getSKU() {
-        return SKU;
+    public String getSku() {
+        return sku;
     }
 
-    public void setSKU(String SKU) {
-        this.SKU = SKU;
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     public int getQuantidade() {
@@ -52,5 +51,17 @@ public class ItensPedido {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ItensPedido )) return false;
+        return id != null && id.equals(((ItensPedido) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }
